@@ -13,7 +13,7 @@ class App extends React.Component {
     age: 22,
   }
 
-  handleClick() {
+  handleClick(event) {
     // console.log(" My name is", this.state.name, "Adress ", this.state.address);
     console.log(">> click me")
 
