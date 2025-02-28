@@ -7,37 +7,11 @@ import MyComponent from './components/MyComponent';
 import React from 'react';
 
 class App extends React.Component {
-  state = {
-    name: 'Dean',
-    address: 'Vinh Phuc',
-    age: 22,
-  }
 
-  handleClick(event) {
-    // console.log(" My name is", this.state.name, "Adress ", this.state.address);
-    console.log(">> click me")
-
-    //thay doi state 
-    // merge state chỉ ở react class
-    this.setState({
-      name: 'Ngoc Anh',
-      age: Math.floor((Math.random() * 100) + 1)
-    })
-
-    // 
-  }
-
-  handleOnMoverOver(event) {
-    console.log(event)
-  }
 
   render() {
     return (
-      <div>
-        My name is {this.state.name} and I'm {this.state.age} years old.
-        <button onClick={(event) => { this.handleClick(event) }}>Click me</button>
-        <button onMouseOver={this.handleOnMoverOver}>Over</button>
-      </div>
+      <MyComponent></MyComponent>
     );
   }
 }
