@@ -11,7 +11,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <MyComponent></MyComponent>
+      <>
+        <div>
+          React Tutorial App
+        </div>
+        <MyComponent></MyComponent>
+      </>
+
     );
   }
 }
