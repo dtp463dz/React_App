@@ -23,17 +23,22 @@ class MyComponent extends React.Component {
     }
     render() {
         return (
-            <div>
-                <AddUserInfor
-                    // ko có dấu () trong handleAddNewUser
-                    // vì handleAddNewUser() đang gọi đến func, nhưng ta cần tham chiếu  
-                    handleAddNewUser={this.handleAddNewUser} // function as Props
-                />
-                <br /><br />
-                <DisplayInfor
-                    listUsers={this.state.listUsers}
-                />
-            </div>
+            <>
+                <div className="a">
+                    <AddUserInfor
+                        // ko có dấu () trong handleAddNewUser
+                        // vì handleAddNewUser() đang gọi đến func, nhưng ta cần tham chiếu  
+                        handleAddNewUser={this.handleAddNewUser} // function as Props
+                    />
+                    <br /><br />
+                    <DisplayInfor
+                        listUsers={this.state.listUsers}
+                    />
+                </div>
+                <div className="b">
+
+                </div>
+            </>
         );
     }
 

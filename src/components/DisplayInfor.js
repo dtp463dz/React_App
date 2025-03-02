@@ -29,7 +29,7 @@ class DisplayInfor extends React.Component {
                     </span>
                 </div>
                 {this.state.isShowListUser &&
-                    <div>
+                    <>
                         {/** sử dụng map để lặp */}
                         {listUsers.map((user) => {
                             // user ở đây chỉ thể hiện dữ liệu (ở listUsers) đã tạo, có thể thay đổi tên tùy ý
@@ -44,7 +44,7 @@ class DisplayInfor extends React.Component {
                                 </div>
                             )
                         })}
-                    </div>
+                    </>
                 }
             </div>
         )
