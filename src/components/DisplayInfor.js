@@ -1,5 +1,5 @@
 import React from "react";
-
+import './DisplayInfor.scss';
 class DisplayInfor extends React.Component {
     state = {
         isShowListUser: true,
@@ -20,7 +20,7 @@ class DisplayInfor extends React.Component {
         const check = isShowListUser === true ? 'isShowListUser = true' : 'isShowListUser = false';
         console.log('>> check is show ListUser: ', check)
         return (
-            <div>
+            <div className="display-infor-container">
                 <div>
                     <span onClick={() => this.handleShowHide()} style={{ cursor: 'pointer' }}>
                         {this.state.isShowListUser === true ? 'Hide list user' : 'Show list user'}
