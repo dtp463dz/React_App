@@ -1,6 +1,6 @@
 import React from "react";
 
-class UserInfor extends React.Component {
+class AddUserInfor extends React.Component {
     state = {
         name: 'Dean',
         address: 'Vinh Phuc',
@@ -9,7 +9,7 @@ class UserInfor extends React.Component {
 
     handleClick(event) {
         // console.log(" My name is", this.state.name, "Adress ", this.state.address);
-        console.log(">> click me")
+        // console.log(">> click me")
 
         //thay doi state 
         // merge state chỉ ở react class
@@ -27,19 +27,33 @@ class UserInfor extends React.Component {
         this.setState({
             name: event.target.value
         })
-        console.log(">>> check form input:  ", event.target.value)
+        // console.log(">>> check form input:  ", event.target.value)
     }
 
     handleOnChangeAge = (event) => {
         this.setState({
             age: event.target.value
         })
-        console.log(">>> check form input:  ", event.target.value)
+        // console.log(">>> check form input:  ", event.target.value)
     }
 
     handleSubmit = (event) => {
         event.preventDefault(); // hàm k load lại website
-        console.log('>> check submit: ', this.state)
+        // console.log('>> check submit: ', this.state)
+
+        // gọi props
+        // đang chạy nó thì cần dấu ()
+        this.props.handleAddNewUser({
+            id: Math.floor((Math.random() * 100) + 1) + '-random', // đảm bảo ko bị trùng id đã có 
+            name: this.state.name,
+            age: this.state.age
+        })
+        // khi ấn submit xong thì form dc clear
+        this.setState({
+            name: '',
+            age: ''
+        })
+
     }
 
     render() {
@@ -69,4 +83,4 @@ class UserInfor extends React.Component {
     }
 }
 
-export default UserInfor;
+export default AddUserInfor;
