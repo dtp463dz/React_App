@@ -21,23 +21,31 @@ class MyComponent extends React.Component {
             listUsers: [userObj, ...this.state.listUsers], // userObj được thêm ở đầu 
         })
     }
+    // delete user
+    deleteUser = (userObj) => {
+        let currentUser = this.state.listUsers;
+        currentUser = currentUser.filter(user => user.id !== userObj.id);
+
+        this.setState({
+            listUsers: currentUser
+        })
+
+    }
     render() {
-        const test = { name: 'Dean', age: 25 }
 
         return (
             <>
-                {console.log('check test', test)}
-                {JSON.stringify(test)}  {/** Hiển thị obj ra ngoài màn hình */}
-                <br />
                 <div className="a">
                     <AddUserInfor
                         // ko có dấu () trong handleAddNewUser
                         // vì handleAddNewUser() đang gọi đến func, nhưng ta cần tham chiếu  
                         handleAddNewUser={this.handleAddNewUser} // function as Props
+
                     />
                     <br /><br />
                     <DisplayInfor
                         listUsers={this.state.listUsers}
+                        deleteUser={this.deleteUser}
                     />
                 </div>
                 <div className="b">

@@ -10,6 +10,10 @@ class DisplayInfor extends React.Component {
             isShowListUser: !this.state.isShowListUser
         })
     }
+    handleDeleteUser = (userDele) => {
+        console.log('>>> check User Delete', userDele)
+        this.props.deleteUser(userDele)
+    }
 
     render() {
         // props => 
@@ -35,13 +39,17 @@ class DisplayInfor extends React.Component {
                             // user ở đây chỉ thể hiện dữ liệu (ở listUsers) đã tạo, có thể thay đổi tên tùy ý
                             // console.log("check user: ", user)
                             return (
-                                // chuyển từ string sang number thêm dấu + đằng trước
-                                // cau dieu kien ? :
-                                <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-                                    <div>My name's {user.name} </div>
-                                    <div>My age's {user.age} </div>
-                                    <hr />
-                                </div>
+                                <>
+                                    {/* // chuyển từ string sang number thêm dấu + đằng trước
+                                // cau dieu kien ? : */}
+
+                                    <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                                        <div>My name's {user.name} </div>
+                                        <div>My age's {user.age} </div>
+                                        <button onClick={() => this.handleDeleteUser(user)}>Delete</button>
+                                        <hr />
+                                    </div>
+                                </>
                             )
                         })}
                     </>
