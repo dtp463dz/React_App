@@ -22,8 +22,13 @@ class MyComponent extends React.Component {
         })
     }
     render() {
+        const test = { name: 'Dean', age: 25 }
+
         return (
             <>
+                {console.log('check test', test)}
+                {JSON.stringify(test)}  {/** Hiển thị obj ra ngoài màn hình */}
+                <br />
                 <div className="a">
                     <AddUserInfor
                         // ko có dấu () trong handleAddNewUser
