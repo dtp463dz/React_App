@@ -12,19 +12,19 @@ class MyComponent extends React.Component {
         ]
     }
 
-    handleAddNewUser = (userObj) => {
-        console.log('>>> check data from parent: ', userObj)
+    handleAddNewUser = (userID) => {
+        console.log('>>> check data from parent: ', userID)
 
         // Thêm mới vào state
         this.setState({
-            // ... để copy lại state còn sau dấu , userObj sẽ được thêm vào đầu hoặc cuối mảng tùy vào cách nó ở đầu hay ở cuối
-            listUsers: [userObj, ...this.state.listUsers], // userObj được thêm ở đầu 
+            // ... để copy lại state còn sau dấu , userID sẽ được thêm vào đầu hoặc cuối mảng tùy vào cách nó ở đầu hay ở cuối
+            listUsers: [userID, ...this.state.listUsers], // userID được thêm ở đầu 
         })
     }
     // delete user
-    deleteUser = (userObj) => {
+    handleDeleteUser = (userID) => {
         let currentUser = this.state.listUsers;
-        currentUser = currentUser.filter(user => user.id !== userObj.id);
+        currentUser = currentUser.filter(item => item.id !== userID);
 
         this.setState({
             listUsers: currentUser
@@ -45,7 +45,7 @@ class MyComponent extends React.Component {
                     <br /><br />
                     <DisplayInfor
                         listUsers={this.state.listUsers}
-                        deleteUser={this.deleteUser}
+                        handleDeleteUser={this.handleDeleteUser}
                     />
                 </div>
                 <div className="b">
