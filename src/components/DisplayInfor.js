@@ -48,6 +48,7 @@ import './DisplayInfor.scss';
 // stateless
 const DisplayInfor = (props) => {
     const { listUsers } = props;   // obj
+    // bao quát const [state, setState] = useState(initialState)
     const [isShowHideListUser, setShowHideListUser] = useState(true);  // useState trả ra 2 tham số,  tên state, và công cụ để cập nhật state
 
     // function component ko có this     
