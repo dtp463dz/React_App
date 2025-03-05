@@ -2,9 +2,34 @@ import React from "react";
 import './DisplayInfor.scss';
 // import logo from '../assets/images/hoa2.jpg';
 class DisplayInfor extends React.Component {
-    state = {
-        isShowListUser: true,
+    constructor(props) {
+        console.log('>>> call constructor: 1')
+        super(props);
+        //babel compiler
+        this.state = {
+            isShowListUser: true,
+        }
     }
+
+    componentDidMount() {
+        console.log('>> call me did mount: ')
+        setTimeout(() => {
+            document.title = 'Web Dean'
+        }, 3000)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('>> call me did mount update: ', this.props, prevProps) // prevProps: gia tri qua khu
+        if (this.props.listUsers !== prevProps.listUsers) {
+            if (this.props.listUsers.length === 5) {
+                alert('you got 5 user')
+            }
+        }
+    }
+
+    // state = {
+    //     isShowListUser: true,
+    // }
     handleShowHide = () => {
         this.setState({
             isShowListUser: !this.state.isShowListUser
@@ -14,12 +39,12 @@ class DisplayInfor extends React.Component {
     render() {
         // props => 
         // console.log('>> check props: ', this.props)
-
+        console.log('>> call me render')
         const { listUsers } = this.props;   // obj
         // console.log('>> check listUsers: ', listUsers)
-        const { isShowListUser } = this.state;
-        const check = isShowListUser === true ? 'isShowListUser = true' : 'isShowListUser = false';
-        console.log('>> check is show ListUser: ', check)
+        // const { isShowListUser } = this.state;
+        // const check = isShowListUser === true ? 'isShowListUser = true' : 'isShowListUser = false';
+        // console.log('>> check is show ListUser: ', check)
         return (
             <div className="display-infor-container">
                 {/* <img src={logo} alt="abc" /> */}
