@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import './DisplayInfor.scss';
 // import logo from '../assets/images/hoa2.jpg';
-
+// handleShowHide = () => {
+//     this.setState({
+//         isShowListUser: !this.state.isShowListUser
+//     })
+// }
 //Stateful 
 // class DisplayInfor extends React.Component {
 //     render() {
@@ -44,9 +48,24 @@ import './DisplayInfor.scss';
 // stateless
 const DisplayInfor = (props) => {
     const { listUsers } = props;   // obj
+    const [isShowHideListUser, setShowHideListUser] = useState(true);  // useState trả ra 2 tham số,  tên state, và công cụ để cập nhật state
+
+    // function component ko có this     
+    // this.state = {
+    //     isShowHideListUser: true
+    // }
+
+    const handleShowHideListUser = () => {
+        setShowHideListUser(!isShowHideListUser)
+    }
     return (
         <div className="display-infor-container">
-            {true &&
+            <div>
+                <span onClick={() => handleShowHideListUser()}>
+                    {isShowHideListUser === true ? 'Hide List User' : 'Show List User'}
+                </span>
+            </div>
+            {isShowHideListUser &&
                 <>
                     {/** sử dụng map để lặp */}
                     {listUsers.map((user, index) => {
