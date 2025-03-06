@@ -66,7 +66,7 @@ const MyComponent = (props) => {
     ]);
 
     const handleAddNewUser = (userObj) => {
-        console.log('>>> check data from parent: ', userObj)
+        // console.log('>>> check data from parent: ', userObj)
         setListUser([userObj, ...listUsers])
     }
     const handleDeleteUser = (userID) => {
