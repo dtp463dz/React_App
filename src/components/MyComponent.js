@@ -57,7 +57,7 @@ import DisplayInfor from "./DisplayInfor";
 
 // }
 
-const MyComponent = () => {
+const MyComponent = (props) => {
 
     const [listUsers, setListUser] = useState([
         { id: 1, name: "Dean", age: "17" },
@@ -65,9 +65,9 @@ const MyComponent = () => {
         { id: 3, name: "TPhuc", age: "50" }
     ]);
 
-    const handleAddNewUser = (userID) => {
-        console.log('>>> check data from parent: ', userID)
-        setListUser([userID, ...listUsers])
+    const handleAddNewUser = (userObj) => {
+        console.log('>>> check data from parent: ', userObj)
+        setListUser([userObj, ...listUsers])
     }
     const handleDeleteUser = (userID) => {
         const currentUser = listUsers.filter(item => item.id !== userID);

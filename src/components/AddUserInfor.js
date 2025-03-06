@@ -83,9 +83,10 @@ import React, { useState } from "react";
 //     }
 // }
 
-const AddUserInfor = ({ handleAddNewUser }) => {
-    const [name, setName] = useState('Dean');
-    const [age, setAge] = useState(22);
+const AddUserInfor = (props) => {
+    const [name, setName] = useState('');
+    // const [address, setAddress] = useState('Vinh Phuc');
+    const [age, setAge] = useState('');
 
     const handleOnChangeInput = (event) => {
         // console.log(">>> check form input:  ", event.target.value)
@@ -99,13 +100,11 @@ const AddUserInfor = ({ handleAddNewUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault(); // hàm k load lại website
         // console.log('>> check submit: ', this.state)
-        handleAddNewUser({
+        props.handleAddNewUser({
             id: Math.floor((Math.random() * 100) + 1) + '-random', // đảm bảo ko bị trùng id đã có 
             name: name,
             age: age
         })
-        setName("");
-        setAge("");
     }
 
     return (
