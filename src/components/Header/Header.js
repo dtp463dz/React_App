@@ -8,17 +8,12 @@ const Header = () => {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">ALTP App</Navbar.Brand>
+                {/* <Navbar.Brand href="#home">ALTP App</Navbar.Brand> */}
+                <NavLink to="/" className='navbar-brand'>ALTP APP</NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink
-                            to="/"
-                            className='nav-link'
-                            style={({ isActive }) => ({
-                                color: isActive ? "red" : "black",
-                            })}
-                        >
+                        <NavLink to="/" className='nav-link'>
                             Home
                         </NavLink>
                         <NavLink to="/users" className='nav-link'>
@@ -33,8 +28,8 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <NavDropdown title="Settings" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Log In</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
+                            <NavDropdown.Item >Log In</NavDropdown.Item>
+                            <NavDropdown.Item >
                                 Log Out
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
