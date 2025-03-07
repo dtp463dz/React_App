@@ -10,7 +10,12 @@ body {
 
 .app-container {
   .header-container {
+
+    .navbar-brand,
     .navbar-nav {
+      z-index: 10;
+      opacity: 0.6;
+
       .nav-link {
 
         // thêm dấu & đằng trước sẽ hiểu class active đứng ngang hàng với .nav-link
@@ -19,6 +24,11 @@ body {
         }
       }
     }
-
   }
+}
+
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
