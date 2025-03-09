@@ -25,12 +25,10 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} >
           {/** Index Route */}
-          <Route
-            index element={<HomePage />}
-          />
+          <Route index element={<HomePage />} />
           <Route path="users" element={<User />} />
-          <Route path="admin" element={<Admin />} />
         </Route>
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
 
