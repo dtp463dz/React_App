@@ -10,6 +10,10 @@ import {
 } from 'react-pro-sidebar';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/images/bg2.jpg';
+import { MdDashboard } from "react-icons/md";
+import { DiReact } from "react-icons/di";
+import './SideBar.scss';
+
 const SildeBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     return (
@@ -35,28 +39,28 @@ const SildeBar = (props) => {
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        APP AP
+                        <DiReact size={'3rem'} color='00bfff' />  {/** logo react */}
+                        ALTP App
                     </div>
                 </SidebarHeader>
 
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
-                            suffix={<span className="badge red">New</span>}
+                            icon={<MdDashboard />}
+                        // suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            Dashboard
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components</MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
-                            suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
+                            icon={<FaGem />}
+                            title="Features"
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem> Quản Lý User</MenuItem>
+                            <MenuItem> Quản Lý Bài Quizz</MenuItem>
+                            <MenuItem> Quản Lý Câu Hỏi</MenuItem>
                         </SubMenu>
 
 
@@ -78,7 +82,7 @@ const SildeBar = (props) => {
                         >
                             <FaGithub />
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                viewSource
+                                AL TP
                             </span>
                         </a>
                     </div>
