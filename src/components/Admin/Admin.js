@@ -2,6 +2,8 @@ import SildeBar from "./SideBar";
 import './Admin.scss';
 import { FaBars } from 'react-icons/fa';
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
 
 const Admin = (props) => {
     const [collapsed, setcollapsed] = useState(false);
@@ -13,9 +15,18 @@ const Admin = (props) => {
             </div>
 
             <div className="admin-content">
-                {/** FaBars: nút ẩn hiển thanh sidebar  */}
-                <FaBars onClick={() => setcollapsed(!collapsed)} />
-                Content Go Here
+
+                <div className="admin-header">
+                    {/** FaBars: nút ẩn hiển thanh sidebar  */}
+
+                    <FaBars onClick={() => setcollapsed(!collapsed)} />
+
+                </div>
+                <div className="admin-main">
+                    <Outlet />
+
+                </div>
+
             </div>
 
         </div>
