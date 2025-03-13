@@ -1,29 +1,9 @@
-import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/apiService";
 
 const TableUser = (props) => {
+    // const listUsers = props.listUsers
+    const { listUsers } = props;
 
-    const [listUsers, setListUsers] = useState([
 
-    ]);
-
-    // hàm này chạy sau khi hàm return chạy
-    // componentDidMount
-    useEffect(() => {
-        // console.log('run second useEffect')
-        // let res = await getAllUser()
-        fetchListUsers();
-    }, []);
-
-    const fetchListUsers = async () => {
-        let res = await getAllUsers();
-        console.log('>> check res useEffect: ', res)
-        if (res.EC === 0) {
-            // trong res có array DT
-            // cập nhật List User trong data 
-            setListUsers(res.DT)
-        }
-    }
 
     // console.log('render view')
     return (
@@ -31,7 +11,7 @@ const TableUser = (props) => {
             <table className="table table-hover table-bordered">
                 <thead className="table-light">
                     <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
@@ -45,7 +25,7 @@ const TableUser = (props) => {
                             console.log('check item', item)
                             return (
                                 <tr key={`table-users-${index}`}>
-                                    <td>{index + 1}</td>
+                                    <td>{item.id}</td>
                                     <td>{item.username}</td>
                                     <td>{item.email}</td>
                                     <td>{item.role}</td>
