@@ -37,6 +37,10 @@ const ManageUser = () => {
         setDataUpdate(user);
         //    console.log('check user btn update: ', user) // user: hiển thị đầy đủ thông tin user muốn update
     }
+    // reset lại phần modal update khi ấn close
+    const resetUpdateData = () => {
+        setDataUpdate({});
+    }
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -62,7 +66,8 @@ const ManageUser = () => {
                     show={showModalUpdateUser} // hiển thị modal update user
                     setShow={setShowModalUpdateUser} // truyền setShow cho modal update
                     dataUpdate={dataUpdate}
-
+                    fetchListUsers={fetchListUsers}     // truyền fetchListUser API cho modal
+                    resetUpdateData={resetUpdateData}
                 />
 
             </div>

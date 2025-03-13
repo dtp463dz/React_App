@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiService';
+import { postUpdateUser } from '../../../services/apiService';
 import _ from 'lodash'; // sử dụng lodash để check obj có rỗng hay ko
 
 const ModalUpdateUser = (props) => {
-    const { show, setShow, dataUpdate } = props;
+    const { show, setShow, dataUpdate, resetUpdateData } = props;
 
     const handleClose = () => {
         setShow(false) // props.setShow
@@ -18,6 +18,7 @@ const ModalUpdateUser = (props) => {
         setRole("USER");  // về lại mặc định
         setImage("");
         setPreviewImage("");
+        resetUpdateData();
     };
 
     // state hóa modal
@@ -78,13 +79,8 @@ const ModalUpdateUser = (props) => {
             toast.error("Invalid email!!!");
             return;
         }
-        if (!password) {
-            toast.error("Invalid password ");
-            return;
-        }
 
-        let data = await postCreateNewUser(email, password, username, role, image);
-        console.log('>>>> component res', data)
+        let data = await postUpdateUser(dataUpdate.id, username, role, image); // lấy id của data update
 
         // console.log('>>>> check res', res.data)
         if (data && data.EC === 0) {
