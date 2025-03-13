@@ -22,7 +22,7 @@ const TableUser = (props) => {
                     {/** loop list user dùng map */}
                     {listUsers && listUsers.length > 0 &&
                         listUsers.map((item, index) => {
-                            console.log('check item', item)
+                            // console.log('check item', item)
                             return (
                                 <tr key={`table-users-${index}`}>
                                     <td>{item.id}</td>
@@ -31,7 +31,10 @@ const TableUser = (props) => {
                                     <td>{item.role}</td>
                                     <td>
                                         <button className="btn btn-secondary">View</button>
-                                        <button className="btn btn-warning mx-3">Update</button>
+                                        <button
+                                            className="btn btn-warning mx-3"
+                                            onClick={() => props.handleClickBtnUpdate(item)} // từ cha truyền xuống, clicl update user, gắn item để hiển thị thông tin đã có
+                                        >Update</button>
                                         <button className="btn btn-danger">Delete</button>
                                     </td>
                                 </tr>
