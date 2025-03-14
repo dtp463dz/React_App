@@ -5,12 +5,15 @@ import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
+import ModalViewUser from "./ModalViewUser";
 
 const ManageUser = () => {
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false); // modal create user: false (đóng)
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false); // modal update user: false (đóng)
+    const [showModalViewUser, setShowModalViewUser] = useState(false); // modal view user 
     const [dataUpdate, setDataUpdate] = useState({});  // data tượng trưng cho user muốn update, kiểu obj rỗng
+    const [dataView, setDataView] = useState({}); // data tượng trưng cho user muốn view
     const [listUsers, setListUsers] = useState([]); // list user
 
 
@@ -41,6 +44,13 @@ const ManageUser = () => {
     const resetUpdateData = () => {
         setDataUpdate({});
     }
+
+    // click button view user
+    const handleClickBtnView = (user) => {
+        setShowModalViewUser(true); // click btn -> modal open
+        setDataView(user);
+        // console.log('check view user', user)
+    }
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -54,6 +64,7 @@ const ManageUser = () => {
                     <TableUser
                         listUsers={listUsers}   // truyền list user 
                         handleClickBtnUpdate={handleClickBtnUpdate} // truyền xg con (table user)
+                        handleClickBtnView={handleClickBtnView}
                     />
                 </div>
 
@@ -70,6 +81,12 @@ const ManageUser = () => {
                     resetUpdateData={resetUpdateData}
                 />
 
+                <ModalViewUser
+                    show={showModalViewUser}
+                    setShow={setShowModalViewUser}
+                    dataView={dataView}
+
+                />
             </div>
         </div>
     )
