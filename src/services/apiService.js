@@ -29,4 +29,8 @@ const postUpdateUser = (id, username, role, image) => {
     return axios.put('api/v1/participant', data);   // method PUT: update
 
 }
-export { postCreateNewUser, getAllUsers, postUpdateUser } 
+
+const deleteUser = (userId) => {
+    return axios.delete('api/v1/participant', { data: { id: userId } }); // truyền obj, axios bắt truyền biến data
+}
+export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser } 

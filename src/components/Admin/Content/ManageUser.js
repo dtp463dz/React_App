@@ -102,7 +102,7 @@ const ManageUser = () => {
                     show={showModalDeleteUser}// hiển thị modal delete user
                     setShow={setShowModalDeleteUser} // truyen setShow cho modal
                     dataDelete={dataDelete}
-
+                    fetchListUsers={fetchListUsers}     // truyền fetchListUser API cho modal để gọi lại ds user
                 />
             </div>
         </div>
