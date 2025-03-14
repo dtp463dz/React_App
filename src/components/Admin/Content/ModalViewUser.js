@@ -30,7 +30,7 @@ const ModalViewUser = (props) => {
 
     // hiển thị thông tin ban đầu trc khi update 
     useEffect(() => {
-        console.log('check data view: ', dataView)
+        // console.log('check data view: ', dataView)
         // neu k rong
         if (!_.isEmpty(dataView)) {
             setEmail(dataView.email)
@@ -48,7 +48,7 @@ const ModalViewUser = (props) => {
                 show={show}
                 onHide={handleClose}
                 size="xl"
-                backdrop="static"
+                backdrop="static" // click ra ngoài modal k bị đóng lại
                 className='modal-add-user'
             >
                 <Modal.Header closeButton>

@@ -6,14 +6,18 @@ import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = () => {
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false); // modal create user: false (đóng)
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false); // modal update user: false (đóng)
     const [showModalViewUser, setShowModalViewUser] = useState(false); // modal view user 
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false); // modal delete user
+
     const [dataUpdate, setDataUpdate] = useState({});  // data tượng trưng cho user muốn update, kiểu obj rỗng
     const [dataView, setDataView] = useState({}); // data tượng trưng cho user muốn view
+    const [dataDelete, setDataDelete] = useState({})
     const [listUsers, setListUsers] = useState([]); // list user
 
 
@@ -51,6 +55,12 @@ const ManageUser = () => {
         setDataView(user);
         // console.log('check view user', user)
     }
+
+    const handleClickBtnDelete = (user) => {
+        setShowModalDeleteUser(true) // click btn delete -> modal open
+        setDataDelete(user);
+        console.log('check delete user', user)
+    }
     return (
         <div className="manage-user-container">
             <div className="title">
@@ -65,6 +75,7 @@ const ManageUser = () => {
                         listUsers={listUsers}   // truyền list user 
                         handleClickBtnUpdate={handleClickBtnUpdate} // truyền xg con (table user)
                         handleClickBtnView={handleClickBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
                     />
                 </div>
 
@@ -85,6 +96,12 @@ const ManageUser = () => {
                     show={showModalViewUser}
                     setShow={setShowModalViewUser}
                     dataView={dataView}
+
+                />
+                <ModalDeleteUser
+                    show={showModalDeleteUser}// hiển thị modal delete user
+                    setShow={setShowModalDeleteUser} // truyen setShow cho modal
+                    dataDelete={dataDelete}
 
                 />
             </div>

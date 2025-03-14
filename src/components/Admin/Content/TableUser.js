@@ -38,7 +38,10 @@ const TableUser = (props) => {
                                             className="btn btn-warning mx-3"
                                             onClick={() => props.handleClickBtnUpdate(item)} // từ cha truyền xuống, clicl update user, gắn item để hiển thị thông tin đã có
                                         >Update</button>
-                                        <button className="btn btn-danger">Delete</button>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => props.handleClickBtnDelete(item)}
+                                        >Delete</button>
                                     </td>
                                 </tr>
                             )

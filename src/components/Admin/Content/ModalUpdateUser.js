@@ -32,7 +32,7 @@ const ModalUpdateUser = (props) => {
     // chạy khi và chỉ khi data update thay đổi
     // hiển thị thông tin ban đầu trc khi update 
     useEffect(() => {
-        console.log('run useeffect', dataUpdate)
+        // console.log('run useeffect', dataUpdate)
         // nếu ko rỗng
         if (!_.isEmpty(dataUpdate)) {
             // update state
@@ -95,7 +95,7 @@ const ModalUpdateUser = (props) => {
         }
     }
     // check data update
-    console.log('check data update', dataUpdate) // dataUpdate được truyền từ cha
+    // console.log('check data update', dataUpdate) // dataUpdate được truyền từ cha
     return (
         <>
 
