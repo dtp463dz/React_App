@@ -33,4 +33,8 @@ const postUpdateUser = (id, username, role, image) => {
 const deleteUser = (userId) => {
     return axios.delete('api/v1/participant', { data: { id: userId } }); // truyền obj, axios bắt truyền biến data
 }
-export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser } 
+
+const getUserWithPaginate = (page, limit) => {
+    return axios.get(`api/v1/participant?page=${page}&limit=${limit}`); // truyền động page, litmit
+}
+export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate }  // export để dùng được ở nơi khác

@@ -3,12 +3,16 @@ import './ManageUser.scss';
 import { FcPlus } from "react-icons/fc";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/apiService";
+import { getAllUsers, getUserWithPaginate } from "../../../services/apiService";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = () => {
+
+    const LIMIT_USER = 6;   // giới hạn user
+    const [pageCount, setPageCount] = useState(0); // trong trg hợp tham số page count = 0 thì nó k hiển thị phân trang
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false); // modal create user: false (đóng)
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false); // modal update user: false (đóng)
@@ -26,9 +30,10 @@ const ManageUser = () => {
     useEffect(() => {
         // console.log('run second useEffect')
         // let res = await getAllUser()
-        fetchListUsers();
+        // fetchListUsers();
+        fetchListUsersWithPaginate(1);
     }, []);
-
+    // fetchListUsers get tất cả người dùng 
     const fetchListUsers = async () => {
         let res = await getAllUsers();
         //    console.log('>> check res useEffect: ', res)
@@ -36,6 +41,15 @@ const ManageUser = () => {
             // trong res có array DT
             // cập nhật List User trong data 
             setListUsers(res.DT)
+        }
+    }
+    // fetchListUsersWithPaginte get người dùng theo kiểu phân trang 
+    const fetchListUsersWithPaginate = async (page) => {
+        let res = await getUserWithPaginate(page, LIMIT_USER);
+        if (res.EC === 0) {
+            console.log('res.data user with paginate: ', res.DT.users)
+            setListUsers(res.DT.users)
+            setPageCount(res.DT.totalPages)     // totalPages xem trong API
         }
     }
     // click button update user
@@ -71,11 +85,19 @@ const ManageUser = () => {
                     <button className="btn btn-primary" onClick={() => setShowModalCreateUser(true)}> <FcPlus /> Add new user</button>
                 </div>
                 <div className="table-user-container">
-                    <TableUser
+                    {/* <TableUser
                         listUsers={listUsers}   // truyền list user 
                         handleClickBtnUpdate={handleClickBtnUpdate} // truyền xg con (table user)
                         handleClickBtnView={handleClickBtnView}
                         handleClickBtnDelete={handleClickBtnDelete}
+                    /> */}
+                    <TableUserPaginate
+                        listUsers={listUsers}   // truyền list user 
+                        handleClickBtnUpdate={handleClickBtnUpdate} // truyền xg con (table user)
+                        handleClickBtnView={handleClickBtnView}
+                        handleClickBtnDelete={handleClickBtnDelete}
+                        fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                        pageCount={pageCount}
                     />
                 </div>
 

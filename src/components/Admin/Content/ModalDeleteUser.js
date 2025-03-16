@@ -12,7 +12,7 @@ const ModalDeleteUser = (props) => {
     }
     const handleSubmitDeleteUser = async () => {
         let data = await deleteUser(dataDelete.id);
-        console.log('>>>> component res', data)
+        // console.log('>>>> component res', data)
 
         // console.log('>>>> check res', res.data)
         if (data && data.EC === 0) {
@@ -29,7 +29,7 @@ const ModalDeleteUser = (props) => {
 
 
 
-    console.log('check data delete', dataDelete)
+    // console.log('check data delete', dataDelete)
     return (
         <>
 
