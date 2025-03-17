@@ -11,7 +11,7 @@ import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = () => {
 
-    const LIMIT_USER = 3;   // giới hạn user
+    const LIMIT_USER = 6;   // giới hạn user
     const [pageCount, setPageCount] = useState(0); // trong trg hợp tham số page count = 0 thì nó k hiển thị phân trang
     const [currentPage, setCurrentPage] = useState(1); // current page cho biết người dùng đang ở trang nào 
 
