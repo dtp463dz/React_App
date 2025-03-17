@@ -87,7 +87,9 @@ const ModalUpdateUser = (props) => {
             toast.success(data.EM);
             // close
             handleClose();
-            await props.fetchListUsers(); // khi modal đóng thì gọi lại API và cập nhật listUser 
+            //    await props.fetchListUsers(); // khi modal đóng thì gọi lại API và cập nhật listUser 
+
+            await props.fetchListUsersWithPaginate(props.currentPage); // khi update fetch tại trang hiện tại
         }
 
         if (data && data.EC !== 0) {

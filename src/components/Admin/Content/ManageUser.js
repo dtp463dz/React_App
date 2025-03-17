@@ -11,8 +11,9 @@ import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = () => {
 
-    const LIMIT_USER = 6;   // giới hạn user
+    const LIMIT_USER = 3;   // giới hạn user
     const [pageCount, setPageCount] = useState(0); // trong trg hợp tham số page count = 0 thì nó k hiển thị phân trang
+    const [currentPage, setCurrentPage] = useState(1); // current page cho biết người dùng đang ở trang nào 
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false); // modal create user: false (đóng)
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false); // modal update user: false (đóng)
@@ -98,6 +99,8 @@ const ManageUser = () => {
                         handleClickBtnDelete={handleClickBtnDelete}
                         fetchListUsersWithPaginate={fetchListUsersWithPaginate}
                         pageCount={pageCount}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
                     />
                 </div>
 
@@ -105,6 +108,10 @@ const ManageUser = () => {
                     show={showModalCreateUser}      // hiển thị modal create user
                     setShow={setShowModalCreateUser} // truyền setShow cho modal create
                     fetchListUsers={fetchListUsers}// truyền fetchListUsers cho modal
+                    fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                    // khi fetch lại list user thì cần cập nhật laị biến currentPage    
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
                 <ModalUpdateUser
                     show={showModalUpdateUser} // hiển thị modal update user
@@ -112,6 +119,10 @@ const ManageUser = () => {
                     dataUpdate={dataUpdate}
                     fetchListUsers={fetchListUsers}     // truyền fetchListUser API cho modal
                     resetUpdateData={resetUpdateData}
+                    fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                    // khi fetch lại list user thì cần cập nhật laị biến currentPage    
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
 
                 <ModalViewUser
@@ -125,6 +136,10 @@ const ManageUser = () => {
                     setShow={setShowModalDeleteUser} // truyen setShow cho modal
                     dataDelete={dataDelete}
                     fetchListUsers={fetchListUsers}     // truyền fetchListUser API cho modal để gọi lại ds user
+                    fetchListUsersWithPaginate={fetchListUsersWithPaginate}
+                    // khi fetch lại list user thì cần cập nhật laị biến currentPage    
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                 />
             </div>
         </div>

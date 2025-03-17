@@ -9,6 +9,7 @@ const TableUserPaginate = (props) => {
     const handlePageClick = (event) => {
         console.log(`User requested page number ${event.selected} `);
         props.fetchListUsersWithPaginate(+event.selected + 1); // do tính từ 0 nên phải +1, dấu + để convert sang number của chuỗi string
+        props.setCurrentPage(+event.selected + 1); // môĩ khi chuyển trang, có state để biêts ng dùng đang ở trang naò
     };
 
     // console.log('render view')
@@ -84,6 +85,7 @@ const TableUserPaginate = (props) => {
                     containerClassName="pagination"
                     activeClassName="active"
                     renderOnZeroPageCount={null}
+                    forcePage={props.currentPage - 1} // ép quay về trang 1, thư viện tính trang từ số 0, còn currentPage tính từ 1
                 />
             </div>
 
