@@ -1,41 +1,24 @@
 import { useState } from 'react';
-import './Login.scss';
+import './Register.scss';
 import { useNavigate } from 'react-router-dom';
-import { postLogin } from '../../services/apiService';
-import { toast } from 'react-toastify';
 
-
-const Login = (props) => {
+const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [userName, setUserName] = useState("");
+
     const navigate = useNavigate();
-    const handleLogin = async () => {
-        // validate
-
-        // submit api
-        let data = await postLogin(email, password)
-        console.log('check data', data)
-
-        if (data && data.EC === 0) {
-            toast.success(data.EM);
-            navigate('/')
-        }
-
-        if (data && +data.EC !== 0) {
-            toast.error(data.EM);
-        }
-    }
     return (
-        <div className="login-container">
+        <div className="register-container">
             <div className='header'>
-                <span>Don't have account yet ?</span>
-                <button className='btn-signup' onClick={() => { navigate('/register') }}>Sign up</button>
+                <span>Already have an account ?</span>
+                <button className='btn-login' onClick={() => { navigate('/login') }}>Login</button>
             </div>
             <div className='title col-4 mx-auto'>
                 ALPT
             </div>
             <div className='welcome col-4 mx-auto'>
-                Hello, who's this?
+                Get better data with conversational forms, surveys, quizzes & more.
             </div>
             <div className='content-form col-4 mx-auto'>
                 <div className='form-group'>
@@ -44,7 +27,6 @@ const Login = (props) => {
                         type={"email"}
                         className="form-control"
                         value={email} // truyền cho react quản lý
-                        onChange={(event) => setEmail(event.target.value)}
                     />
                 </div>
                 <div className='form-group'>
@@ -53,24 +35,30 @@ const Login = (props) => {
                         type={"password"}
                         className="form-control"
                         value={password} // truyền cho react quản lý
-                        onChange={(event) => setPassword(event.target.value)}
                     />
                 </div>
-                <span className='forgot-password'>Forgot password ?</span>
+                <div className='form-group'>
+                    <label>User Name</label>
+                    <input
+                        type={"text"}
+                        className="form-control"
+                        value={userName} // truyền cho react quản lý
+                    />
+                </div>
                 <div>
                     <button
                         className='btn-submit'
-                        onClick={() => handleLogin()}
-                    >Login</button>
+                    >Create my free account</button>
                 </div>
+
                 <div className='text-center'>
-                    <span className='back' onClick={() => { navigate('/') }}>
+                    <span className="back" onClick={() => { navigate('/') }}>
                         &#60;&#60; Go to Homepage
                     </span>
                 </div>
+
             </div>
         </div>
     )
 }
-
-export default Login;
+export default Register;
