@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './Register.scss';
 import { useNavigate } from 'react-router-dom';
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userName, setUserName] = useState("");
+    const [isShowPassword, setIsShowPassword] = useState(false);   // false đóng
 
     const navigate = useNavigate();
     return (
@@ -22,20 +24,33 @@ const Register = () => {
             </div>
             <div className='content-form col-4 mx-auto'>
                 <div className='form-group'>
-                    <label>Email</label>
+                    <label>Email (*)</label>
                     <input
                         type={"email"}
                         className="form-control"
                         value={email} // truyền cho react quản lý
+                        onChange={(event) => setEmail(event.target.value)}
                     />
                 </div>
-                <div className='form-group'>
-                    <label>Password</label>
+                <div className='form-group pass-group'>
+                    <label>Password (*)</label>
                     <input
-                        type={"password"}
+                        type={isShowPassword ? "text" : "password"}
                         className="form-control"
                         value={password} // truyền cho react quản lý
+                        onChange={(event) => setPassword(event.target.value)}
                     />
+                    {isShowPassword ?
+                        <span className="icons-eye" onClick={() => setIsShowPassword(false)}>
+                            <FaRegEye />
+                        </span>
+                        :
+                        <span className="icons-eye" onClick={() => setIsShowPassword(true)}>
+                            <FaRegEyeSlash />
+                        </span>
+                    }
+
+
                 </div>
                 <div className='form-group'>
                     <label>User Name</label>
@@ -43,6 +58,7 @@ const Register = () => {
                         type={"text"}
                         className="form-control"
                         value={userName} // truyền cho react quản lý
+                        onChange={(event) => setUserName(event.target.value)}
                     />
                 </div>
                 <div>
