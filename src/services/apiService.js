@@ -17,7 +17,7 @@ const getAllUsers = () => {
     return axios.get('api/v1/participant/all');
 
 }
-
+// check api để theo form-data
 const postUpdateUser = (id, username, role, image) => {
     // submit data
     const data = new FormData(); // formData cua axios
@@ -37,4 +37,18 @@ const deleteUser = (userId) => {
 const getUserWithPaginate = (page, limit) => {
     return axios.get(`api/v1/participant?page=${page}&limit=${limit}`); // truyền động page, litmit
 }
-export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate }  // export để dùng được ở nơi khác
+
+// check api để theo x-www-form-urlencoded => truyền obj
+const postLogin = (userEmail, userPassword) => {
+    return axios.post(`api/v1/login`,
+        { email: userEmail, password: userPassword }
+    );
+}
+// cách viết 2
+// const postLogin1 = (email, password) => {
+//     return axios.post(`api/v1/login`,
+//         { email, password}
+//     );
+// }
+
+export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin }  // export để dùng được ở nơi khác
