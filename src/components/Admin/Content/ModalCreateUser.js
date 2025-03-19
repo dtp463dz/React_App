@@ -65,7 +65,7 @@ const ModalCreateUser = (props) => {
         }
 
         let data = await postCreateNewUser(email, password, username, role, image);
-        console.log('>>>> component res', data)
+        // console.log('>>>> component res', data)
 
         // console.log('>>>> check res', res.data)
         if (data && data.EC === 0) {

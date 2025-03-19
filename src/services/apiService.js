@@ -51,4 +51,13 @@ const postLogin = (userEmail, userPassword) => {
 //     );
 // }
 
-export { postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin }  // export để dùng được ở nơi khác
+// check api để theo x-www-form-urlencoded => truyền obj
+const postRegister = (userEmail, userName, userPassword) => {
+    return axios.post(`api/v1/register`,
+        { email: userEmail, password: userPassword, username: userName }
+    )
+}
+
+export {
+    postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister
+}  // export để dùng được ở nơi khác
