@@ -2,24 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { store, persistor } from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from "react-router-dom";
 import Layout from './Layout';
 import 'nprogress/nprogress.css'; // thư viện dùng cho loading bar
 
+import { PersistGate } from 'redux-persist/integration/react'; // giảm lượng bớt bug
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    {/** Ẩn đi StrictModel để ko render twice ở console */}
-    {/* <React.StrictMode> */}
+    <PersistGate loading={null} persistor={persistor}>
+      {/** Ẩn đi StrictModel để ko render twice ở console */}
+      {/* <React.StrictMode> */}
 
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
 
-    {/* </React.StrictMode> */}
+      {/* </React.StrictMode> */}
+    </PersistGate>
   </Provider>
 );
 
