@@ -62,6 +62,11 @@ const postRegister = (userEmail, userName, userPassword) => {
     )
 }
 
+// Lấy data quiz (GET)
+const getQuizByUser = () => {
+    return axios.get(`api/v1/quiz-by-participant`)
+}
+
 export {
-    postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister
+    postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser
 }  // export để dùng được ở nơi khác

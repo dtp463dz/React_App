@@ -1,5 +1,7 @@
 import axios from "axios";
 import NProgress from 'nprogress';
+import { store } from '../redux/store';
+
 
 // custom NProgress (loading bar)
 NProgress.configure({
@@ -16,6 +18,9 @@ const instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
+    // console.log('check store: ', store.getState());
+    const access_token = store?.getState()?.user?.account?.access_token; // them ? để khi store lỗi accesstoken sẽ thành undefined
+    config.headers["Authorization"] = "Bearer " + access_token; // thêm token xác thực vào header của request, lay access token
     NProgress.start();
     // Do something before request is sent
     return config;
