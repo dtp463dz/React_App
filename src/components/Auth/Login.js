@@ -6,11 +6,15 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 
+import { FaSpinner } from "react-icons/fa"; // icon load spinner
+
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const [isLoading, setIsLoading] = useState(false);
 
     //validate email
     const validateEmail = (email) => {
@@ -31,6 +35,7 @@ const Login = (props) => {
             toast.error("Invalid password !!!");
             return;
         }
+        setIsLoading(true); // trước khi gọi api set bằng true
         // submit api
         let data = await postLogin(email, password)
         //    console.log('check data login', data)
@@ -38,11 +43,14 @@ const Login = (props) => {
             // dispatch + action
             dispatch(doLogin(data))
             toast.success(data.EM);
+            setIsLoading(false); // khi load thành công chuyển về false
             navigate('/')
         }
 
         if (data && +data.EC !== 0) {
             toast.error(data.EM);
+            setIsLoading(false); // on button login, k call api
+
         }
     }
     return (
@@ -81,7 +89,12 @@ const Login = (props) => {
                     <button
                         className='btn-submit'
                         onClick={() => handleLogin()}
-                    >Login</button>
+                        disabled={isLoading}  // mặc định set bằng false
+                    >
+                        {isLoading === true && <FaSpinner className="loader-icon" />}
+                        <span>Login</span>
+
+                    </button>
                 </div>
                 <div className='text-center'>
                     <span className='back' onClick={() => { navigate('/') }}>

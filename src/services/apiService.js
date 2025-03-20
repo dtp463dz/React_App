@@ -41,7 +41,11 @@ const getUserWithPaginate = (page, limit) => {
 // check api để theo x-www-form-urlencoded => truyền obj
 const postLogin = (userEmail, userPassword) => {
     return axios.post(`api/v1/login`,
-        { email: userEmail, password: userPassword }
+        {
+            email: userEmail,
+            password: userPassword,
+            delay: 5000  // thêm tham số delay đã có từ api (m/s)
+        }
     );
 }
 // cách viết 2
