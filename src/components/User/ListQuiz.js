@@ -29,7 +29,7 @@ const ListQuiz = (props) => {
                                 <h5 className="card-title">Quiz {index + 1}</h5>
                                 <p className="card-text">{quiz.description}</p>
                                 <button
-                                    onClick={() => navigate(`/quiz/${quiz.id}`)}  // cho $ để k cần nối chuỗi
+                                    onClick={() => navigate(`/quiz/${quiz.id}`, { state: { quizTitle: quiz.description } })}  // cho $ để k cần nối chuỗi, truyền state để hiển thị title cho detailquiz 
                                     className="btn btn-primary">
                                     Start Now
                                 </button>
