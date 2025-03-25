@@ -15,7 +15,7 @@ const Question = (props) => {
         // console.log('Check: ', event.target.checked);
 
         // console.log('check data props: ', data, id)
-        console.log('check data props: ', aId, qId);
+        // console.log('check data props: ', aId, qId);
         props.handleCheckbox(aId, qId);
     }
 

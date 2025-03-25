@@ -10,8 +10,6 @@ import Question from './Question';
 const DetailQuiz = (props) => {
     const params = useParams(); // lấy tham số trên đường link URL
     const location = useLocation();
-
-    console.log('check location: ', location)
     // console.log('check params: ', params); // hiển thị id trên đường link url
     const quizId = params.id;
 
@@ -24,7 +22,6 @@ const DetailQuiz = (props) => {
 
     const fetchQuestions = async () => {
         let res = await getDataQuiz(quizId);
-        console.log('check question: ', res)
         if (res && res.EC === 0) {
             let raw = res.DT;
             let data = _.chain(raw)
@@ -46,12 +43,9 @@ const DetailQuiz = (props) => {
                     return { questionId: key, answers: answers, questionDescription, image }
                 })
                 .value()
-            console.log(data)
             setDataQuiz(data) // cập nhật data từ cha
         }
     }
-
-    console.log("check dataQuiz", dataQuiz)
 
     const handlePrev = () => {
         if (index - 1 < 0) return;
@@ -61,6 +55,50 @@ const DetailQuiz = (props) => {
     const handleNext = () => {
         if (dataQuiz && dataQuiz.length > index + 1)
             setIndex(index + 1)
+    }
+
+    const handleFinish = () => {
+        // buid data truoc khi submit , data nay trong api
+        // hàm này trả về data như ở dưới
+        // {
+        //     "quizId": 1,
+        //     "answers": [
+        //         { 
+        //             "questionId": 1,
+        //             "userAnswerId": [3]
+        //         },
+        //         { 
+        //             "questionId": 2,
+        //             "userAnswerId": [6]
+        //         }
+        //     ]
+        // }
+
+        console.log('check data befor submit: ', dataQuiz)
+        let payload = {
+            quizId: +quizId,
+            answers: []
+        };
+        let answer = [];
+        if (dataQuiz && dataQuiz.length > 0) {
+            dataQuiz.forEach(question => {
+                let questionId = question.questionId
+                let userAnswerId = [];
+
+                // todo : userAnswerId
+                question.answers.forEach(a => {
+                    if (a.isSelected === true) {
+                        userAnswerId.push(a.id)
+                    }
+                })
+                answer.push({
+                    questionId: +questionId,
+                    userAnswerId: userAnswerId
+                })
+            })
+            payload.answers = answer
+            console.log("final payload: ", payload)
+        }
     }
 
     const handleCheckbox = (answerId, questionId) => {
@@ -118,7 +156,7 @@ const DetailQuiz = (props) => {
                     >Next</button>
 
                     <button className='btn btn-warning'
-                        onClick={() => handleNext()}
+                        onClick={() => handleFinish()}
                     >Finish</button>
                 </div>
             </div>
