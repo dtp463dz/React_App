@@ -73,6 +73,14 @@ const getDataQuiz = (id) => {
     return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
 }
 
+// submit quiz 
+const postSubmitQuiz = (data) => {
+    // console.log('check data api: ', { ...data })
+    return axios.post(`/api/v1/quiz-submit`, { ...data });
+}
+
 export {
-    postCreateNewUser, getAllUsers, postUpdateUser, deleteUser, getUserWithPaginate, postLogin, postRegister, getQuizByUser, getDataQuiz
+    postCreateNewUser, getAllUsers, postUpdateUser,
+    deleteUser, getUserWithPaginate, postLogin,
+    postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz,
 }  // export để dùng được ở nơi khác

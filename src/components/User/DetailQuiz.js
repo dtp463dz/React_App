@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { getDataQuiz } from '../../services/apiService';
+import { getDataQuiz, postSubmitQuiz } from '../../services/apiService';
 import _ from 'lodash'; // sử dụng lodash để check obj có rỗng hay ko
 import './DetailQuiz.scss';
 import Question from './Question';
+import ModalResult from './ModalResult';
 
 
 
@@ -16,6 +17,8 @@ const DetailQuiz = (props) => {
     const [dataQuiz, setDataQuiz] = useState([]);
     const [index, setIndex] = useState(0); // câu hỏi thứ bao nhiêu
 
+    const [isShowModalResult, setIsShowModalResult] = useState(false); // modal result
+    const [dataModalResult, setDataModalResult] = useState({}); // obj rong
     useEffect(() => {
         fetchQuestions();
     }, [quizId]) // mỗi 1 lần tham số quizId thay đổi thì hàm useEffect được chạy
@@ -57,22 +60,8 @@ const DetailQuiz = (props) => {
             setIndex(index + 1)
     }
 
-    const handleFinish = () => {
-        // buid data truoc khi submit , data nay trong api
-        // hàm này trả về data như ở dưới
-        // {
-        //     "quizId": 1,
-        //     "answers": [
-        //         { 
-        //             "questionId": 1,
-        //             "userAnswerId": [3]
-        //         },
-        //         { 
-        //             "questionId": 2,
-        //             "userAnswerId": [6]
-        //         }
-        //     ]
-        // }
+    const handleFinish = async () => {
+
 
         console.log('check data befor submit: ', dataQuiz)
         let payload = {
@@ -98,6 +87,20 @@ const DetailQuiz = (props) => {
             })
             payload.answers = answer
             console.log("final payload: ", payload)
+            // submit api
+            let res = await postSubmitQuiz(payload)
+            console.log('check response: ', res)
+            if (res && res.EC === 0) {
+                setDataModalResult({
+
+                    countCorrect: res.DT.countCorrect,
+                    countTotal: res.DT.countTotal,
+                    quizData: res.DT.quizData,
+                })
+                setIsShowModalResult(true); // mở modal
+            } else {
+                alert('something wrongs...')
+            }
         }
     }
 
@@ -163,6 +166,11 @@ const DetailQuiz = (props) => {
             <div className="right-content">
                 count down
             </div>
+            <ModalResult
+                show={isShowModalResult}
+                setShow={setIsShowModalResult}
+                dataModalResult={dataModalResult}
+            />
         </div>
     )
 }
