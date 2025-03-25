@@ -10,12 +10,23 @@ const Question = (props) => {
         )
     }
 
+    const handleHandleCheckBox = (event, aId, qId) => {
+        // react get checkbox value => trả về giá trị true khi được tick và ngược lại
+        // console.log('Check: ', event.target.checked);
+
+        // console.log('check data props: ', data, id)
+        console.log('check data props: ', aId, qId);
+        props.handleCheckbox(aId, qId);
+    }
+
     return (
         <>
-            {data.image &&
+            {data.image ?
                 <div className='q-image'>
                     <img src={`data:image/jpeg;base64,${data.image}`} />
                 </div>
+                :
+                <div className='q-image'></div>
             }
             <div className='question'>Question {index + 1}: {data.questionDescription} ?</div>
             <div className='answer'>
@@ -25,11 +36,12 @@ const Question = (props) => {
                             <div
                                 key={`answer - ${index}`}
                                 className='a-child'>
-                                <div class="form-check">
-                                    <input class="form-check-input"
+                                <div className="form-check">
+                                    <input className="form-check-input"
                                         type="checkbox"
-                                        value="" />
-                                    <label class="form-check-label" >
+                                        checked={a.isSelected} // checkbox ăn theo isSelected, để biết người dùng có chọn checkbox ko
+                                        onChange={(event) => handleHandleCheckBox(event, a.id, data.questionId)} />
+                                    <label className="form-check-label" >
                                         {a.description}
                                     </label>
                                 </div>

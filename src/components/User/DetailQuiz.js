@@ -32,11 +32,13 @@ const DetailQuiz = (props) => {
                 .map((value, key) => {
                     let answers = [];
                     let questionDescription, image = null;
+                    // đẩy vào array
                     value.forEach((item, index) => {
                         if (index === 0) {
                             questionDescription = item.description;
                             image = item.image;
                         }
+                        item.answers.isSelected = false; // thêm trường mới isSelected, mặc định false là k chọn
                         answers.push(item.answers)
                         //    console.log('item answers: ', item.answers)
                     })   // forEach lặp từng đối tượng 1
@@ -49,7 +51,7 @@ const DetailQuiz = (props) => {
         }
     }
 
-    console.log("check data quiz", dataQuiz)
+    console.log("check dataQuiz", dataQuiz)
 
     const handlePrev = () => {
         if (index - 1 < 0) return;
@@ -59,6 +61,32 @@ const DetailQuiz = (props) => {
     const handleNext = () => {
         if (dataQuiz && dataQuiz.length > index + 1)
             setIndex(index + 1)
+    }
+
+    const handleCheckbox = (answerId, questionId) => {
+        let dataQuizClone = _.cloneDeep(dataQuiz);  // cloneDeep sao chép tất cả obj, react hook doesn't merge state 
+        let question = dataQuizClone.find(item => +item.questionId === +questionId)// + convert sang number
+        if (question && question.answers) {
+            //    console.log('question: ', question)
+
+            // logic checkbox khi được chọn và bỏ chọn
+            let b = question.answers.map(item => {
+                if (+item.id === +answerId) {
+                    item.isSelected = !item.isSelected;
+                }
+                return item;
+            })
+
+            question.answers = b;
+            //    console.log(b)
+        }
+
+        // 
+        let index = dataQuizClone.findIndex(item => +item.questionId === +questionId);
+        if (index > -1) {
+            dataQuizClone[index] = question;
+            setDataQuiz(dataQuizClone);
+        }
     }
     return (
         <div className='detail-quiz-container'>
@@ -73,6 +101,7 @@ const DetailQuiz = (props) => {
                 <div className='q-content'>
                     <Question
                         index={index}
+                        handleCheckbox={handleCheckbox}
                         data={
                             dataQuiz && dataQuiz.length > 0
                                 ?
@@ -87,6 +116,10 @@ const DetailQuiz = (props) => {
                     <button className='btn btn-primary'
                         onClick={() => handleNext()}
                     >Next</button>
+
+                    <button className='btn btn-warning'
+                        onClick={() => handleNext()}
+                    >Finish</button>
                 </div>
             </div>
             <div className="right-content">
