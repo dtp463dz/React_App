@@ -79,8 +79,19 @@ const postSubmitQuiz = (data) => {
     return axios.post(`/api/v1/quiz-submit`, { ...data });
 }
 
+// check api để theo form-data
+const postCreateQuiz = (description, name, difficulty, quizImage) => {
+    // submit data
+    const data = new FormData(); // formData cua axios
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', quizImage);
+    return axios.put('api/v1/quiz', data);   // method PUT: update
+}
 export {
     postCreateNewUser, getAllUsers, postUpdateUser,
     deleteUser, getUserWithPaginate, postLogin,
     postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz,
+    postCreateQuiz
 }  // export để dùng được ở nơi khác

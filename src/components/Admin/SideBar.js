@@ -13,11 +13,12 @@ import sidebarBg from '../../assets/images/bg2.jpg';
 import { MdDashboard } from "react-icons/md";
 import { DiReact } from "react-icons/di";
 import './SideBar.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 const SildeBar = (props) => {
+    const navigate = useNavigate();
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
@@ -43,7 +44,10 @@ const SildeBar = (props) => {
                         }}
                     >
                         <DiReact size={'3rem'} color='00bfff' />  {/** logo react */}
-                        ALTP App
+
+                        <span style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
+                            ALTP App
+                        </span>
                     </div>
                 </SidebarHeader>
 
@@ -63,7 +67,7 @@ const SildeBar = (props) => {
                             title="Features"
                         >
                             <MenuItem> Quản Lý User <Link to="/admin/manage-users" /></MenuItem>
-                            <MenuItem> Quản Lý Bài Quizz</MenuItem>
+                            <MenuItem> Quản Lý Bài Quizz <Link to="/admin/manage-quizzes" /> </MenuItem>
                             <MenuItem> Quản Lý Câu Hỏi</MenuItem>
                         </SubMenu>
 
