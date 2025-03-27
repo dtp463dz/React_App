@@ -89,9 +89,17 @@ const postCreateNewQuiz = (description, name, difficulty, quizImage) => {
     data.append('quizImage', quizImage);
     return axios.post('api/v1/quiz', data);
 }
+
+// tao quiz moi admin
+const getAllQuizForAdmin = () => {
+    return axios.get('/api/v1/quiz/all');
+
+}
+
+
 export {
     postCreateNewUser, getAllUsers, postUpdateUser,
     deleteUser, getUserWithPaginate, postLogin,
     postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz,
-    postCreateNewQuiz
+    postCreateNewQuiz, getAllQuizForAdmin
 }  // export để dùng được ở nơi khác
