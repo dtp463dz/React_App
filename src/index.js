@@ -9,7 +9,7 @@ import Layout from './Layout';
 import 'nprogress/nprogress.css'; // thư viện dùng cho loading bar
 
 import { PersistGate } from 'redux-persist/integration/react'; // giảm lượng bớt bug
-
+import 'react-perfect-scrollbar/dist/css/styles.css'; // scrollbar dùng ở thanh cuộn trang
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
