@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { postUpdateUser } from '../../../services/apiService';
+import { putUpdateUser } from '../../../services/apiService';
 import _ from 'lodash'; // sử dụng lodash để check obj có rỗng hay ko
 
 const ModalUpdateUser = (props) => {
@@ -80,7 +80,7 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        let data = await postUpdateUser(dataUpdate.id, username, role, image); // lấy id của data update
+        let data = await putUpdateUser(dataUpdate.id, username, role, image); // lấy id của data update
 
         // console.log('>>>> check res', res.data)
         if (data && data.EC === 0) {

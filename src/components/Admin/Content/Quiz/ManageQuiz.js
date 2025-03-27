@@ -21,6 +21,7 @@ const ManageQuiz = (props) => {
     const [image, setImage] = useState(null);
 
 
+
     const handleChangeFile = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
             // hien thi anh dung URL.createObjectURL sẽ chuyênr sang blob
@@ -50,6 +51,8 @@ const ManageQuiz = (props) => {
             toast.error(res.EM)
         }
     }
+
+
     return (
         <div className="quiz-container">
             <Accordion defaultActiveKey="0">

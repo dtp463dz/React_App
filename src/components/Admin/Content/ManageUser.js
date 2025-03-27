@@ -57,7 +57,7 @@ const ManageUser = () => {
     const handleClickBtnUpdate = (user) => {
         setShowModalUpdateUser(true); // click vào btn thì modal được mở 
         setDataUpdate(user);
-        //    console.log('check user btn update: ', user) // user: hiển thị đầy đủ thông tin user muốn update
+        console.log('check user btn update: ', user) // user: hiển thị đầy đủ thông tin user muốn update
     }
     // reset lại phần modal update khi ấn close
     const resetUpdateData = () => {

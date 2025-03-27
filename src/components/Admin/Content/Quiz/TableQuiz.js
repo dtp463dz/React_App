@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 import { getAllQuizForAdmin } from "../../../../services/apiService";
+import ModalUpdateQuiz from "./ModalUpdateQuiz";
 
-const TableQuiz = () => {
+const TableQuiz = (props) => {
 
     const [listQuiz, setListQuiz] = useState([]);
+    // modal update
+    const [showModalUpdateQuiz, setShowModalUpdateQuiz] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState({});
 
     useEffect(() => {
         fetchQuiz();
     }, [])
 
     const fetchQuiz = async () => {
+        setDataUpdate()
         let res = await getAllQuizForAdmin();
         if (res && res.EC === 0) {
             setListQuiz(res.DT);
         }
-        console.log('res: ', res)
+        //    console.log('res: ', res)
+    }
+
+    const handleClickBtnUpdateQuiz = (quiz) => {
+        setShowModalUpdateQuiz(true);
+        setDataUpdate(quiz);
+        console.log('check btn quiz update: ', quiz)
     }
 
     return (
@@ -42,7 +53,9 @@ const TableQuiz = () => {
                                 <td>{item.description}</td>
                                 <td>{item.difficulty}</td>
                                 <td style={{ display: "flex", gap: "15px" }}>
-                                    <button className="btn btn-warning">Edit</button>
+                                    <button className="btn btn-warning"
+                                        onClick={() => handleClickBtnUpdateQuiz(item)}
+                                    >Edit</button>
                                     <button className="btn btn-danger">Delete</button>
 
                                 </td>
@@ -54,6 +67,14 @@ const TableQuiz = () => {
 
 
                 </tbody>
+                <ModalUpdateQuiz
+                    show={showModalUpdateQuiz}
+                    setShow={setShowModalUpdateQuiz}
+                    dataUpdate={dataUpdate}
+                    setDataUpdate={setDataUpdate}
+                    fetchQuiz={fetchQuiz}
+
+                />
             </table>
         </>
     )

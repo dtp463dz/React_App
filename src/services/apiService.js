@@ -18,7 +18,7 @@ const getAllUsers = () => {
 
 }
 // check api để theo form-data
-const postUpdateUser = (id, username, role, image) => {
+const putUpdateUser = (id, username, role, image) => {
     // submit data
     const data = new FormData(); // formData cua axios
     data.append('id', id);
@@ -95,11 +95,21 @@ const getAllQuizForAdmin = () => {
     return axios.get('/api/v1/quiz/all');
 
 }
+// update quiz admin
+const putUpdateQuizForAdmin = (id, name, description, difficulty, image) => {
+    const data = new FormData();
+    data.append('id', id);
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', image);
+    return axios.put('api/v1/quiz', data);
+}
 
 
 export {
-    postCreateNewUser, getAllUsers, postUpdateUser,
+    postCreateNewUser, getAllUsers, putUpdateUser,
     deleteUser, getUserWithPaginate, postLogin,
     postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz,
-    postCreateNewQuiz, getAllQuizForAdmin
+    postCreateNewQuiz, getAllQuizForAdmin, putUpdateQuizForAdmin
 }  // export để dùng được ở nơi khác
