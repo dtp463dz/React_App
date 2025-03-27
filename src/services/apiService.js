@@ -106,10 +106,17 @@ const putUpdateQuizForAdmin = (id, name, description, difficulty, image) => {
     return axios.put('api/v1/quiz', data);
 }
 
+// delete quiz for admin
+const deleteQuizForAdmin = (id) => {
+    return axios.delete(`api/v1/quiz/${id}`); // truyền obj, axios bắt truyền biến data
+}
+
 
 export {
     postCreateNewUser, getAllUsers, putUpdateUser,
     deleteUser, getUserWithPaginate, postLogin,
     postRegister, getQuizByUser, getDataQuiz, postSubmitQuiz,
-    postCreateNewQuiz, getAllQuizForAdmin, putUpdateQuizForAdmin
+    postCreateNewQuiz, getAllQuizForAdmin, putUpdateQuizForAdmin,
+    deleteQuizForAdmin
+
 }  // export để dùng được ở nơi khác
