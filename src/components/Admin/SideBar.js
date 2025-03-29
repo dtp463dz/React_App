@@ -68,7 +68,7 @@ const SildeBar = (props) => {
                         >
                             <MenuItem> Quản Lý User <Link to="/admin/manage-users" /></MenuItem>
                             <MenuItem> Quản Lý Bài Quizz <Link to="/admin/manage-quizzes" /> </MenuItem>
-                            <MenuItem> Quản Lý Câu Hỏi</MenuItem>
+                            <MenuItem> Quản Lý Câu Hỏi <Link to="/admin/manage-questions" /></MenuItem>
                         </SubMenu>
 
 
