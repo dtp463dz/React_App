@@ -57,7 +57,7 @@ const Questions = (props) => {
             };
             setQuestions([...questions, newQuestion]) // cap nhat them moi
         }
-        if (type == 'REMOVE') {
+        if (type === 'REMOVE') {
             let questionsClone = _.cloneDeep(questions);
             questionsClone = questionsClone.filter(item => item.id !== id);
             setQuestions(questionsClone);
@@ -79,12 +79,11 @@ const Questions = (props) => {
             questionsClone[index].answers.push(newAnswer);
             setQuestions(questionsClone)
         }
-        if (type == 'REMOVE') {
+        if (type === 'REMOVE') {
             let index = questionsClone.findIndex(item => item.id === questionId);
             questionsClone[index].answers = questionsClone[index].answers.filter(item => item.id !== answerId);
             setQuestions(questionsClone);
         }
-        console.log('check type: ', type, id)
     }
     console.log('question: ', questions)
     return (
